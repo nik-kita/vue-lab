@@ -1,3 +1,7 @@
 <template>
-  <h1>Welcome To Lab One!</h1>
+  <RadioGroup />
 </template>
+
+<script setup lang="ts">
+import RadioGroup from './lib/RadioGroup.vue';
+</script>
