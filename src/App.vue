@@ -1,3 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
 
-<template>scratch</template>
+
+</script>
+
+
+
+<template>
+  <h1>hi</h1>
+</template>
