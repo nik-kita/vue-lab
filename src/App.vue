@@ -6,5 +6,13 @@
 
 
 <template>
-  <h1>hi</h1>
+  <div class="app root">
+
+  </div>
 </template>
+
+<style>
+.app.root {
+  height: 100%;
+}
+</style>
