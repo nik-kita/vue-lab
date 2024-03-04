@@ -6,6 +6,10 @@
   font-weight: normal;
 }
 
+* {
+  background-color: rgba(20, 20, 20, 0.1);
+}
+
 body {
   height: 100vh;
 }
