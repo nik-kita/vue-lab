@@ -1,13 +1,26 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import CalculatorInput from '../components/CalculatorInput.vue'
+
+const monitorOutput = ref('')
+
+function processNumClick(num: number) {
+  const lastChar = monitorOutput.value.at(-1)
+  monitorOutput.value += Number.isNaN(lastChar) ? ` ${num}` : num
+}
+</script>
+
 <template>
   <main class="calculator root">
-    <textarea class="calculator monitor" type="text" disabled></textarea>
-    <input
+    <textarea class="calculator monitor" type="text" disabled v-model="monitorOutput"></textarea>
+    <CalculatorInput
       v-for="(_, i) in 10"
       :key="i"
       :value="i"
       type="button"
       class="calculator"
       :class="'num' + i"
+      @click="processNumClick"
     />
     <button class="calculator backspace">Backspace</button>
     <button class="calculator c">C</button>
