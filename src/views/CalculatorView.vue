@@ -2,11 +2,16 @@
 import { ref } from 'vue'
 import CalculatorInput from '../components/CalculatorInput.vue'
 
-const monitorOutput = ref('')
+const monitorOutput = ref('0')
 
 function processNumClick(num: number | string) {
   const lastChar = monitorOutput.value.at(-1)
-  monitorOutput.value += Number.isNaN(lastChar) ? ` ${num}` : num
+  const firstPart = monitorOutput.value.length === 1 && lastChar === '0' ? '' : monitorOutput.value
+
+  monitorOutput.value = firstPart + (Number.isNaN(lastChar) ? ` ${num}` : num)
+}
+function processC() {
+  monitorOutput.value = '0'
 }
 </script>
 
@@ -17,13 +22,12 @@ function processNumClick(num: number | string) {
       v-for="(_, i) in 10"
       :key="i"
       :value="i"
-      type="button"
       class="calculator"
       :class="'num' + i"
       @click="processNumClick"
     />
     <button class="calculator backspace">Backspace</button>
-    <button class="calculator c">C</button>
+    <CalculatorInput @click="processC" value="C" class="calculator c" />
     <button class="calculator divide">/</button>
     <button class="calculator multiply">x</button>
     <button class="calculator minus">-</button>
