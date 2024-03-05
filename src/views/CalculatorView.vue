@@ -7,7 +7,7 @@ function processNumClick(num: number) {
   const firstPart = monitorOutput.value === '0' ? '' : monitorOutput.value
   const lastChar = monitorOutput.value.at(-1)
 
-  monitorOutput.value = firstPart + (Number.isNaN(lastChar) ? ` ${num}` : num)
+  monitorOutput.value = firstPart + (Number.isNaN(lastChar) && lastChar !== '.' ? ` ${num}` : num)
 }
 function processC() {
   monitorOutput.value = '0'
@@ -38,7 +38,12 @@ function processBackspace() {
     <button class="calculator multiply">x</button>
     <button class="calculator minus">-</button>
     <button class="calculator plus">+</button>
-    <button class="calculator dot">.</button>
+    <button
+      @click="() => (monitorOutput += monitorOutput.at(-1) === '.' ? '' : '.')"
+      class="calculator dot"
+    >
+      .
+    </button>
     <button class="calculator equals">=</button>
   </main>
 </template>
