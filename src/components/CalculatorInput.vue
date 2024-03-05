@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const props = defineProps<{
-  value: number
+  value: number | string
 }>()
 const emit = defineEmits<{
-  click: [value: number]
+  click: [value: typeof props.value]
 }>()
 function pressed() {
   emit('click', props.value)

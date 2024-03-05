@@ -4,7 +4,7 @@ import CalculatorInput from '../components/CalculatorInput.vue'
 
 const monitorOutput = ref('')
 
-function processNumClick(num: number) {
+function processNumClick(num: number | string) {
   const lastChar = monitorOutput.value.at(-1)
   monitorOutput.value += Number.isNaN(lastChar) ? ` ${num}` : num
 }
