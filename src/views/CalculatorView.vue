@@ -3,15 +3,21 @@ import { ref } from 'vue'
 import CalculatorNumInput from '../components/CalculatorNumInput.vue'
 
 const monitorOutput = ref('0')
-
 function processNumClick(num: number) {
+  const firstPart = monitorOutput.value === '0' ? '' : monitorOutput.value
   const lastChar = monitorOutput.value.at(-1)
-  const firstPart = monitorOutput.value.length === 1 && lastChar === '0' ? '' : monitorOutput.value
 
   monitorOutput.value = firstPart + (Number.isNaN(lastChar) ? ` ${num}` : num)
 }
 function processC() {
   monitorOutput.value = '0'
+}
+function processBackspace() {
+  if (monitorOutput.value.length === 1) {
+    monitorOutput.value = '0'
+  } else {
+    monitorOutput.value = monitorOutput.value.slice(0, -1)
+  }
 }
 </script>
 
@@ -26,8 +32,8 @@ function processC() {
       :class="'num' + i"
       @click="processNumClick"
     />
-    <button class="calculator backspace">Backspace</button>
-    <input type="button" @click="processC" value="C" class="calculator c" />
+    <button @click="processBackspace" class="calculator backspace">Backspace</button>
+    <button @click="processC" value="C" class="calculator c">C</button>
     <button class="calculator divide">/</button>
     <button class="calculator multiply">x</button>
     <button class="calculator minus">-</button>
