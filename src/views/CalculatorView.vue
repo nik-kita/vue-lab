@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import CalculatorInput from '../components/CalculatorInput.vue'
+import CalculatorNumInput from '../components/CalculatorNumInput.vue'
 
 const monitorOutput = ref('0')
 
-function processNumClick(num: number | string) {
+function processNumClick(num: number) {
   const lastChar = monitorOutput.value.at(-1)
   const firstPart = monitorOutput.value.length === 1 && lastChar === '0' ? '' : monitorOutput.value
 
@@ -18,7 +18,7 @@ function processC() {
 <template>
   <main class="calculator root">
     <textarea class="calculator monitor" type="text" disabled v-model="monitorOutput"></textarea>
-    <CalculatorInput
+    <CalculatorNumInput
       v-for="(_, i) in 10"
       :key="i"
       :value="i"
@@ -27,7 +27,7 @@ function processC() {
       @click="processNumClick"
     />
     <button class="calculator backspace">Backspace</button>
-    <CalculatorInput @click="processC" value="C" class="calculator c" />
+    <input type="button" @click="processC" value="C" class="calculator c" />
     <button class="calculator divide">/</button>
     <button class="calculator multiply">x</button>
     <button class="calculator minus">-</button>

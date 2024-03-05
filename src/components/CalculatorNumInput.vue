@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  value: number | string
+  value: number
 }>()
 const emit = defineEmits<{
   click: [value: typeof props.value]
