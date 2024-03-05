@@ -1,7 +1,14 @@
 <template>
   <main class="calculator root">
     <textarea class="calculator monitor" type="text" disabled></textarea>
-    <input v-for="(_, i) in 10" :key="i" :value="i" type="button" />
+    <input
+      v-for="(_, i) in 10"
+      :key="i"
+      :value="i"
+      type="button"
+      class="calculator"
+      :class="'num' + i"
+    />
     <button class="calculator backspace">Backspace</button>
     <button class="calculator c">C</button>
     <button class="calculator divide">/</button>
