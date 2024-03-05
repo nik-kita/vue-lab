@@ -1,31 +1,34 @@
 <script setup lang="ts">
-import GridExample from '@/components/GridExample.vue';
-import { ref } from 'vue';
+import GridExample from '@/components/GridExample.vue'
+import { ref } from 'vue'
 
-const config = ref('');
+const config = ref('')
 </script>
 
-
-
 <template>
+  <RouterLink to="/lab">Lab</RouterLink>
   <textarea class="home textarea" @keypress.enter.stop :value="config"></textarea>
   <main class="home main">
-    <GridExample :gridTemplate="`
+    <GridExample
+      :gridTemplate="`
       'header  header '
       'content content'
       'content content'
       'content content'
       'footer  footer '
       'footer  footer'
-    `" />
-    <GridExample :gridTemplate="`
+    `"
+    />
+    <GridExample
+      :gridTemplate="`
       'h h h h h h'
       'c c c c c c'
       'c c c c c c'
       'a a b b d d'
       'a a b b d d'
       'f f f f f f'
-    `" />
+    `"
+    />
   </main>
 </template>
 
