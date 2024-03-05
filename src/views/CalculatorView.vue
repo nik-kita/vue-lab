@@ -1,21 +1,12 @@
 <template>
   <main class="calculator root">
     <textarea class="calculator monitor" type="text" disabled></textarea>
+    <input v-for="(_, i) in 10" :key="i" :value="i" type="button" />
     <button class="calculator backspace">Backspace</button>
     <button class="calculator c">C</button>
-    <button class="calculator seven">7</button>
-    <button class="calculator eight">8</button>
-    <button class="calculator nine">9</button>
     <button class="calculator divide">/</button>
-    <button class="calculator four">4</button>
-    <button class="calculator five">5</button>
-    <button class="calculator six">6</button>
     <button class="calculator multiply">x</button>
-    <button class="calculator one">1</button>
-    <button class="calculator two">2</button>
-    <button class="calculator three">3</button>
     <button class="calculator minus">-</button>
-    <button class="calculator zero">0</button>
     <button class="calculator plus">+</button>
     <button class="calculator dot">.</button>
     <button class="calculator equals">=</button>
@@ -30,12 +21,12 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
   grid-template:
-    'monitor monitor monitor monitor  '
-    'c       c       .       backspace'
-    'seven   eight   nine    divide   '
-    'four    five    six     multiply '
-    'one     two     three   minus    '
-    'zero    dot     plus    equals   ';
+    'monitor monitor monitor  monitor  '
+    'c       c       .        backspace'
+    'num7    num8    num9     divide   '
+    'num4    num5    num6     multiply '
+    'num1    num2    num3     minus    '
+    'num0    dot     plus     equals   ';
 }
 
 .calculator.monitor {
@@ -75,43 +66,43 @@
   grid-area: dot;
 }
 
-.calculator.one {
-  grid-area: one;
+.calculator.num1 {
+  grid-area: num1;
 }
 
-.calculator.two {
-  grid-area: two;
+.calculator.num2 {
+  grid-area: num2;
 }
 
-.calculator.three {
-  grid-area: three;
+.calculator.num3 {
+  grid-area: num3;
 }
 
-.calculator.four {
-  grid-area: four;
+.calculator.num4 {
+  grid-area: num4;
 }
 
-.calculator.five {
-  grid-area: five;
+.calculator.num5 {
+  grid-area: num5;
 }
 
-.calculator.six {
-  grid-area: six;
+.calculator.num6 {
+  grid-area: num6;
 }
 
-.calculator.seven {
-  grid-area: seven;
+.calculator.num7 {
+  grid-area: num7;
 }
 
-.calculator.eight {
-  grid-area: eight;
+.calculator.num8 {
+  grid-area: num8;
 }
 
-.calculator.nine {
-  grid-area: nine;
+.calculator.num9 {
+  grid-area: num9;
 }
 
-.calculator.zero {
-  grid-area: zero;
+.calculator.num0 {
+  grid-area: num0;
 }
 </style>
