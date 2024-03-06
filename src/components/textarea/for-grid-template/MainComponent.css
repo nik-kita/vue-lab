@@ -1,37 +1,31 @@
 .root {
   display: grid;
-  grid-template: "full-single-area" 1fr / 1fr;
+  grid-template: 'full-single-area' 1fr / 1fr;
 }
 
 .textarea-ghost {
   grid-area: full-single-area;
   padding: 0.4rem;
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 2.5;
   font-family: monospace;
   width: 100%;
   border: none;
 }
 
 .textarea {
-  color: blue;
-  outline: 4px dashed blue;
-  background-color: transparent;
   resize: none;
   overflow: hidden;
   z-index: -1;
 }
 
 .ghost {
-  color: red;
-  outline: 4px solid red;
   height: 100%;
 }
 
 .tag {
-  background-color: black;
-  color: white;
-  outline: 1px dotted green;
+  outline-offset: 2px;
+  outline: 1px solid green;
   border-radius: 4px;
   cursor: pointer;
 }
