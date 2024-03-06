@@ -30,31 +30,5 @@ const aloneEnter = gen_alone_enter_handler(content)
 </template>
 
 <style scoped>
-.root {
-  position: relative;
-}
-
-.textarea-ghost {
-  padding: 0.4rem;
-  font-size: 1rem;
-  font-family: monospace;
-  width: 100%;
-  border: none;
-}
-
-.textarea {
-  color: blue;
-  outline: 4px dashed blue;
-  background-color: transparent;
-  resize: none;
-  overflow: hidden;
-}
-
-.ghost {
-  color: red;
-  outline: 4px solid red;
-  z-index: -1;
-  height: 100%;
-  position: absolute;
-}
+@import url(./MainComponent.css);
 </style>
