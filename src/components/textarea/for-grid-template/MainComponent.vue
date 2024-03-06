@@ -17,15 +17,14 @@ const aloneEnter = gen_alone_enter_handler(content)
 
 <template>
   <div class="root">
-    <div class="textarea-ghost ghost">|_i</div>
     <textarea
       class="textarea-ghost textarea"
       :value="content"
       @keypress.enter.exact.prevent="aloneEnter"
       :rows="lines.length > MIN_TEXTAREA_ROWS ? lines.length : MIN_TEXTAREA_ROWS"
       :placeholder="'press Enter to add a new line\nand Shift+Enter to submit the form\n(Shift or Alt or Ctrl or Command...)'"
-    >
-  </textarea>
+    ></textarea>
+    <div class="textarea-ghost ghost">|_i</div>
   </div>
 </template>
 

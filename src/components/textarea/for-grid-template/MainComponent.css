@@ -1,9 +1,10 @@
-
 .root {
-  position: relative;
+  display: grid;
+  grid-template: "full-single-area" 1fr / 1fr;
 }
 
 .textarea-ghost {
+  grid-area: full-single-area;
   padding: 0.4rem;
   font-size: 1rem;
   font-family: monospace;
@@ -24,5 +25,4 @@
   outline: 4px solid red;
   z-index: -1;
   height: 100%;
-  position: absolute;
 }
