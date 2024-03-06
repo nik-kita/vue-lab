@@ -1,10 +1,10 @@
 <template>
   <textarea
+    class="textarea-ghost textarea"
     :value="content"
     @keypress.enter.exact.prevent="aloneEnter"
-    class="textarea-cmp textarea border"
-    :rows
-    placeholder="Press Enter+[alt|ctrl|command] to send message"
+    :rows="lines.length > 3 ? lines.length : 3"
+    :placeholder="'press Enter to add a new line\nand Shift+Enter to submit the form\n(Shift or Alt or Ctrl or Command...)'"
   >
   </textarea>
 </template>
@@ -14,22 +14,25 @@ import { computed, ref } from 'vue'
 import { gen_alone_enter_handler } from './gen-alone-enter-handler'
 
 const content = ref('')
-const rows = computed(() => {
-  return content.value.split('\n').length
+const lines = computed(() => {
+  const result = content.value.split('\n')
+
+  return result
 })
 const aloneEnter = gen_alone_enter_handler(content)
 </script>
 
-<style>
-.textarea-cmp.textarea {
-  background-color: rgba(9, 9, 9, 0.2);
+<style scoped>
+.textarea-ghost {
   padding: 0.4rem;
   font-family: monospace;
   width: 100%;
-  resize: none;
+  outline: 4px dashed orange;
 }
-.textarea-cmp.textarea:focus {
-  outline: none;
-  background-color: transparent;
+
+.textarea {
+  background-color: rgba(9, 9, 9, 0.2);
+  resize: none;
+  overflow: hidden;
 }
 </style>
