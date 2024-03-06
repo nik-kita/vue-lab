@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TextareaCmp from '@/components/TextareaCmp.vue'
+import TextareaCmp from '@/components/textarea/for-grid-template/MainComponent.vue'
 </script>
 
 <template>

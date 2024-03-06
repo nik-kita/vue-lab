@@ -1,23 +1,6 @@
-<template>
-  <textarea
-    :value="formattedContent"
-    @keypress.enter.exact.prevent="handleAloneEnter"
-    class="textarea-cmp textarea border border-gray-300 rounded-md p-2"
-    :rows
-    placeholder="Press Enter+[alt|ctrl|command] to send message"
-  >
-  </textarea>
-</template>
+import type { Ref } from 'vue'
 
-<script setup lang="ts">
-import { computed, ref } from 'vue'
-
-const formattedContent = ref('')
-const rows = computed(() => {
-  return formattedContent.value.split('\n').length
-})
-
-const handleAloneEnter = (ev: KeyboardEvent) => {
+export const gen_alone_enter_handler = (textareaValue: Ref<string>) => (ev: KeyboardEvent) => {
   const value = (ev.target as HTMLTextAreaElement).value
   const { lines, word_position_with_max_len } = (value as string).split('\n').reduce(
     (acc, line) => {
@@ -46,16 +29,5 @@ const handleAloneEnter = (ev: KeyboardEvent) => {
           .join(' ')
       )
       .join('\n') + '\n'
-  formattedContent.value = result
-  console.log(result)
+  textareaValue.value = result
 }
-</script>
-
-<style>
-.textarea-cmp.textarea {
-  padding: 1rem;
-  font-family: monospace;
-  width: 100%;
-  resize: none;
-}
-</style>
