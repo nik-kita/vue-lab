@@ -1,6 +1,6 @@
 <template>
   <textarea
-    v-model="formattedContent"
+    :value="formattedContent"
     @keypress.enter.exact.prevent="handleAloneEnter"
     class="textarea-cmp textarea border border-gray-300 rounded-md p-2"
     :rows
@@ -14,12 +14,12 @@ import { computed, ref } from 'vue'
 
 const formattedContent = ref('')
 const rows = computed(() => {
-  console.log('computed')
   return formattedContent.value.split('\n').length
 })
 
-const handleAloneEnter = () => {
-  const { lines, word_position_with_max_len } = formattedContent.value.split('\n').reduce(
+const handleAloneEnter = (ev: KeyboardEvent) => {
+  const value = (ev.target as HTMLTextAreaElement).value
+  const { lines, word_position_with_max_len } = (value as string).split('\n').reduce(
     (acc, line) => {
       acc.lines.push(line)
       line.split(/ +/).forEach(({ length }, i) => {
@@ -37,8 +37,7 @@ const handleAloneEnter = () => {
     }
   )
 
-  formattedContent.value =
-    '\n' +
+  const result =
     lines
       .map((line) =>
         line
@@ -46,8 +45,9 @@ const handleAloneEnter = () => {
           .map((word, i) => word.trim().padEnd(word_position_with_max_len[i], ' '))
           .join(' ')
       )
-      .join('\n') +
-    '\n'
+      .join('\n') + '\n'
+  formattedContent.value = result
+  console.log(result)
 }
 </script>
 
