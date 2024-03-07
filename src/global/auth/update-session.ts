@@ -1,7 +1,7 @@
 import { query } from '../query'
 import { store } from '../store'
 
-export async function getSession() {
+export async function updateSession() {
   const res = await query<any>('/auth/profile')
 
   if (!res.ok) {
