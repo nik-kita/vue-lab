@@ -1,17 +1,16 @@
-import { API_HOST } from "../const";
 import JsCookie from 'js-cookie';
+import { query } from "../query";
 
 
-export async function login(payload: {
+export async function login(body: {
   email: string,
   password: string,
 }) {
   try {
-    const res = await fetch(`${API_HOST}/auth/login`, {
+    const res = await query(`/auth/login`, {
       method: 'post',
-      body: JSON.stringify(payload),
-    }).then((res) => res.json()).catch((err) => {
-      console.error('Runtime error: ', err);
+      body,
+      with_credentials: false,
     });
 
     if (!res.access_token || !res.refresh_token) {
