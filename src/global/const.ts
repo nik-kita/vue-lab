@@ -1,1 +1,1 @@
-export const API_HOST = 'https://api.escuelajs.co/api/v1'
+export const API_HOST = 'http://localhost:3000'
