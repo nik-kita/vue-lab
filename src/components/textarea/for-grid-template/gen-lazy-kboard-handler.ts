@@ -27,7 +27,7 @@ export const gen_lazy_kboard_handler = (textareaValue: Ref<string>) => (ev: Keyb
         line
           .split(/ +/)
           .map((word, i) => word.trim().padEnd(word_position_with_max_len[i], ' '))
-          .join('  ')
+          .join('    ')
       )
       .join('\n')
 

@@ -20,11 +20,26 @@ const kboardHandler = gen_lazy_kboard_handler(content)
 const onClickFocusTextarea = () => {
   textarea.value.focus()
 }
+function closeTag(line: number, tag: number) {
+  const l = lines.value[line]
+  const www = l.split(/ +/)
+  www.splice(tag, 1)
+  const firstPart = lines.value.slice(0, line)
+  const middle = www.join('    ')
+  const lastPart = lines.value.slice(line + 1)
+  const result = [...firstPart, middle, ...lastPart].join('\n')
+  content.value = result.trimEnd()
+}
 </script>
 
 <template>
   <div class="root">
-    <TagBox :lines="lines" @click="onClickFocusTextarea" class="textarea-ghost ghost" />
+    <TagBox
+      @close-tag="closeTag"
+      :lines="lines"
+      @click="onClickFocusTextarea"
+      class="textarea-ghost ghost"
+    />
     <textarea
       ref="textarea"
       class="textarea-ghost textarea"
