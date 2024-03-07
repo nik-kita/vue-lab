@@ -26,7 +26,7 @@ export const gen_alone_enter_handler = (textareaValue: Ref<string>) => (ev: Keyb
         line
           .split(/ +/)
           .map((word, i) => word.trim().padEnd(word_position_with_max_len[i], ' '))
-          .join(' ')
+          .join('    ')
       )
       .join('\n') + '\n'
   textareaValue.value = result

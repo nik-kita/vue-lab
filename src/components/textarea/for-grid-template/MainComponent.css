@@ -4,10 +4,10 @@
 }
 
 .textarea-ghost {
+  padding: 0.8rem;
   grid-area: full-single-area;
-  padding: 0.4rem;
   font-size: 1rem;
-  line-height: 2.5;
+  line-height: 3;
   font-family: monospace;
   width: 100%;
   border: none;
@@ -21,13 +21,6 @@
 
 .ghost {
   height: 100%;
-}
-
-.tag {
-  outline-offset: 2px;
-  outline: 1px solid green;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .inline {

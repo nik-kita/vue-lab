@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { gen_alone_enter_handler } from './gen-alone-enter-handler'
+import TagBox from './TagBox.vue'
 
 const MIN_TEXTAREA_ROWS = 3
 const content = ref('')
@@ -20,13 +21,7 @@ const onClickFocusTextarea = () => {
 
 <template>
   <div class="root">
-    <div @click="onClickFocusTextarea" class="textarea-ghost ghost">
-      <template v-for="(l, i) of lines" :key="i">
-        <template v-for="(w, j) of l.split(/\b/)" :key="j">
-          <pre class="inline" :class="{ tag: !/ +/.test(w) }">{{ w }}</pre></template
-        ><br />
-      </template>
-    </div>
+    <TagBox :lines="lines" @click="onClickFocusTextarea" class="textarea-ghost ghost" />
     <textarea
       ref="textarea"
       class="textarea-ghost textarea"
@@ -38,6 +33,7 @@ const onClickFocusTextarea = () => {
   </div>
 </template>
 
-<style scoped>
-@import url(./MainComponent.css);
+<style>
+@layer base-layer;
+@import url(./MainComponent.css) layer(textarea-for-grid-template);
 </style>
