@@ -1,25 +1,14 @@
-import type { StoreDefinition, _ExtractActionsFromSetupStore, _ExtractGettersFromSetupStore, _ExtractStateFromSetupStore } from 'pinia'
-
 export function gen_fetch<
-  S extends {
+  T extends () => {
+    user:
+      | {
+          access?: string
+          refresh?: string
+        }
+      | undefined
     logout: () => void
-    user?: {
-      access: string
-      refresh: string
-    }
   }
->(
-  auth: ReturnType<
-    StoreDefinition<
-      'auth',
-      _ExtractStateFromSetupStore<S>,
-      _ExtractGettersFromSetupStore<S>,
-      _ExtractActionsFromSetupStore<{
-        logout: () => void
-      }>
-    >
-  >
-) {
+>(config: T) {
   const my_fetch = {
     get: <H = object, Res = void>(url: string, headers?: H) => req<undefined, H, Res>(url, 'get', undefined, headers),
     post: <B, H = object, Res = void>(url: string, body: B, headers?: H) => req<B, H, Res>(url, 'post', body, headers),
@@ -42,7 +31,8 @@ export function gen_fetch<
         payload: Res
       }
   > {
-    const access = auth.user?.access
+    const { user, logout } = config()
+    const access = user?.access
     const res = await fetch(url, {
       method,
       headers: {
@@ -56,7 +46,7 @@ export function gen_fetch<
     if (!res.ok) {
       return { ok: false, reason: res.statusText }
     } else if (res.status === 401 || res.status === 403) {
-      auth.logout()
+      logout()
       return {
         ok: false,
         reason: 'Unauthorized'
