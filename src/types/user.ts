@@ -6,7 +6,15 @@ export namespace User {
     name: string
     email: string
     role: 'admin' | 'user'
-    password: string
+    sub: string
+    access: string
+    refresh: string
   }
-  export type Public = OmitStrict<Private, 'password'>
+  export type Public = OmitStrict<Private, 'sub'>
+
+  export function toPublic(user: Private): Public {
+    delete (user as Partial<Private>).sub
+
+    return user as Partial<Private> as Public
+  }
 }

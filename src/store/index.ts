@@ -1,5 +1,1 @@
-import { defineStore } from 'pinia'
-
-export const useRootStore = defineStore('root', () => {
-  return {}
-})
+export { use_auth_store } from './auth'
