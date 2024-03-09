@@ -1,32 +1,28 @@
-import { use_auth_store } from '@/store'
 import { createRouter, createWebHistory } from 'vue-router'
+import { auth_decorator } from './auth-decorator'
+import LoginView from '@/views/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView
+    },
     {
       path: '/',
       name: 'home',
       component: () => import('@/views/HomeView.vue')
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('@/views/LoginView.vue')
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/AboutView.vue')
     }
   ]
 })
 
-router.beforeEach(async (to) => {
-  // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login']
-  const authRequired = !publicPages.includes(to.path)
-  const auth = use_auth_store()
-
-  if (authRequired && !auth.user) {
-    auth.returnUrl = to.fullPath
-    return '/login'
-  }
-})
+auth_decorator(router)
 
 export default router
